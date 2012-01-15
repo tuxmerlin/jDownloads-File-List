@@ -63,7 +63,11 @@ class plgContentJdownloadsfilelist extends JPlugin
 		// CSS
 		$document = JFactory::getDocument();
 		$stylecss = $this->getStyleCSS($pluginParams);
-		if (strlen($stylecss)>1){ $document->addCustomTag($stylecss); }
+		if (strlen($stylecss)>1)
+		{ 
+			$document->addCustomTag($stylecss); 
+			
+		}
 		
 		// scan!!
 		$regex = "#{jd_fl==(.*?)}#s";	
@@ -74,11 +78,14 @@ class plgContentJdownloadsfilelist extends JPlugin
 		{		
 			$catlist 	= $this->contentJDFileList_getCategoryData($id);
 			$access		= $this->contentJDFileList_check($catlist);				
-			if ($access['error'] == 0){				
+			if ($access['error'] == 0)
+			{				
 				$filelist 	= $this->contentJDFileList_getCategoryFiles($catlist->cat_id,$itemorder);					
 				$itemid		= $this->contentJDFileList_CalcItemid();		
 				$output		= $this->contentJDFileList_createHTML($catlist,$filelist,$pluginParams,$itemid,$config);
-			} else {				
+			} 
+			else 
+			{				
 				($showerr) ? $output = $access['html'] : '';
 			}
 			$article->text = str_replace("{jd_fl==$id}", $output, $article->text);
@@ -97,12 +104,15 @@ class plgContentJdownloadsfilelist extends JPlugin
 	{
 		// Sanitize
 		$id = (int) $id;		
-		if ($id != 0) {
+		if ($id != 0) 
+		{
 			$query = "SELECT * FROM #__jdownloads_cats WHERE cat_id = ".$id; 
 			$db =& JFactory::getDBO();
 			$db->setQuery($query);
 			$catlist = $db->loadObject();
-		} else {
+		} 
+		else 
+		{
 			$catlist = null;
 		}		
 		return $catlist;
@@ -119,12 +129,22 @@ class plgContentJdownloadsfilelist extends JPlugin
 	{	
 		// Sanitize
 		$catid = (int) $catid;
-		switch ($itemorder) {
-			case '1':	$order = ' ORDER BY file_title ASC';break;
-			case '2':	$order = ' ORDER BY file_title DESC';break;
-			case '3':	$order = ' ORDER BY file_ID ASC';break;
-			case '4':	$order = ' ORDER BY file_ID DESC';break;
-			default: $order = ' ORDER BY ordering';
+		switch ($itemorder) 
+		{
+			case '1':	
+				$order = ' ORDER BY file_title ASC';
+				break;
+			case '2':	
+				$order = ' ORDER BY file_title DESC';
+				break;
+			case '3':	
+				$order = ' ORDER BY file_ID ASC';
+				break;
+			case '4':	
+				$order = ' ORDER BY file_ID DESC';
+				break;
+			default: 
+				$order = ' ORDER BY ordering';
 		}			
 		$db =& JFactory::getDBO();
 		$query = "SELECT * FROM #__jdownloads_files WHERE cat_id = ".$catid." AND published=1 {$order}";
@@ -177,7 +197,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 			$cdcode		= $pluginParams->get('ccleancode','0');
 			$cdword		= (int) $pluginParams->get('cwordlimit',0);				
 			$cdimg		= $pluginParams->get('cimage',1);
-			if ($cdimg == 1){ 
+			if ($cdimg == 1)
+			{ 
 				$imgz = getimagesize(JURI::base().'images/jdownloads/catimages/'.$catlist->cat_pic); 
 				$heigmin=$imgz[1]+4;
 			}
@@ -192,7 +213,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 			$html   = '<div id="tuxjdfilelist">';		
 			
 			// Intro Category
-			if ($intro == '1'){
+			if ($intro == '1')
+			{
 				(strlen($introtit)>1) 	? $html  .= '<div class="tuxjdfl-introtit"><h3>'.$introtit.'</h3></div>' : '';
 				(strlen($introdesc)>1) 	? $html  .= '<div class="tuxjdfl-introdesc">'.$introdesc.'</div>' : '';
 			}
@@ -201,21 +223,30 @@ class plgContentJdownloadsfilelist extends JPlugin
 			($ctit) ? $html  .= '<div class="tuxjdfl-titcat"><h3>'.$catlist->cat_title.'</h3></div>' : '';
 			
 			// jDownloads Category Description
-			if ($cdesc == 1){					
+			if ($cdesc == 1)
+			{					
 				$html .='<div class="tuxjdfl-textcat" style="min-height:'.$heigmin.'px;padding:2px">';
-				if ($cdimg == 1){ // If show image
+				
+				// If show image
+				if ($cdimg == 1) 
+				{ 
 					$html .='<div style="padding:2px;float:left;"><img src="'.JURI::base().'images/jdownloads/catimages/'.$catlist->cat_pic.'" alt="'.$catlist->cat_title.'" title="'.$catlist->cat_title.'"/></div>';
 				}
-				if ($cdword != 0) {
+				
+				if ($cdword != 0) 
+				{
 					$linkcat = JRoute::_( "index.php?option=com_jdownloads&Itemid=".$itemid."&view=viewcategory&catid=".$catlist->cat_id);
 					$html .= $this->cutWord(strip_tags($catlist->cat_description),$cdword,$linkcat);
-				} else {				
+				} 
+				else 
+				{				
 					($cdcode == 1) ? $html .= strip_tags($catlist->cat_description) : $html .= $catlist->cat_description ;
 				}
 				$html .='</div>';
 			}	
 			$tiptip = JText::_('JDOWNLOADSTIP_TITLE').'::'.JText::_('JDOWNLOADSTIP_HELP');
-			if ($pag == '1'){
+			if ($pag == '1')
+			{
 				// With Pagination
 				$x = 0;
 				$pag=1;
@@ -242,7 +273,9 @@ class plgContentJdownloadsfilelist extends JPlugin
 						if ($typedesc == 1) 
 						{
 							($fcode == 1) ? $html .= strip_tags($file->description) : $html .= $file->description ;
-						} else {
+						} 
+						else 
+						{
 							($fcode == 1) ? $html .= strip_tags($file->description_long) : $html .= $file->description_long ;
 						}
 					}					
@@ -252,10 +285,13 @@ class plgContentJdownloadsfilelist extends JPlugin
 				}
 				$html .='</div>';
 				$html .='</div>';
-			} else {
+			} 
+			else 
+			{
 				// Without pagination
 				$html  .= '<ul class="tuxjdfl-list">';
-				foreach ($filelist as $file){
+				foreach ($filelist as $file)
+				{
 					$linkfile='<a href="'.JRoute::_('index.php?option=com_jdownloads&Itemid='.$itemid.'&view=view.download&catid='.$file->cat_id.'&cid='.$file->file_id).'">'.$file->file_title.'</a>';
 					$html .= '<li class="tuxjdfl-listli"><span title="'.$tiptip.'" "class="editlinktip hasTip tuxjdfl-links">'.$linkfile.'</span></li>';
 					if ($fdesc == 1)
@@ -264,7 +300,9 @@ class plgContentJdownloadsfilelist extends JPlugin
 						if ($typedesc == 1) 
 						{
 							($fcode == 1) ? $html .= strip_tags($file->description) : $html .= $file->description ;
-						} else {
+						} 
+						else 
+						{
 							($fcode == 1) ? $html .= strip_tags($file->description_long) : $html .= $file->description_long ;
 						}
 						$html .='</div>';
@@ -275,7 +313,9 @@ class plgContentJdownloadsfilelist extends JPlugin
 			// If you remove this line, you must make a donation - See header of this file
 			$html .='</div>';
 			$html .= base64_decode('PGRpdiBzdHlsZT0idGV4dC1hbGlnbjpjZW50ZXI7Zm9udC1zaXplOjg1JSI+PHNwYW4gdGl0bGU9IlR1eCBNZXJsaW4gRXh0ZW5zaW9uczo6SWYgeW91IGxpa2UgdGhpcyBleHRlbnNpb24gcGxlYXNlIGRvbmF0ZSIgY2xhc3M9ImVkaXRsaW5rdGlwIGhhc1RpcCI+PGEgaHJlZj0iaHR0cDovL3d3dy50dXhtZXJsaW4uY29tLmFyIiB0YXJnZXQ9Il9ibGFuayIgc3R5bGU9InRleHQtZGVjb3JhdGlvbjpub25lO2NvbG9yOiNDQ0NDQ0M7Ij5Qb3dlcmVkIGJ5IFR1eCBNZXJsw61uIEV4dGVuc2lvbnM8L2E+PC9zcGFuPjwvZGl2Pg==');
-		} else {
+		} 
+		else 
+		{
 			$html   = '<div class="jdfilelist" style="border: '.$pborder.';padding: '.$psepa.'px;">';
 			$html  .= '<p><span style="color:#FF0000">WARNING!! - NO EXIST JDOWNLOADS COMPONENT</span></p><p>jDownloads File List Plugins not work</p>';
 		}		
@@ -309,7 +349,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 	* @package		Joomla.Plugin
 	* @subpackage	Content.jdownloadsfilelist
 	*/
-	protected function getIcons ($file,$params,$config){
+	protected function getIcons ($file,$params,$config)
+	{
 	
 		$html = '';			
 		// Rutes
@@ -329,12 +370,17 @@ class plgContentJdownloadsfilelist extends JPlugin
 		$count		= $file->downloads;		
 		$lca		= $params->get('link_cform',1);
 		$linkauthor = '';
-		if ($lca){
-			if (substr_count($urlauthor, '@') == 1){
+		if ($lca)
+		{
+			if (substr_count($urlauthor, '@') == 1)
+			{
 				$linkauthor = $this->isJoomlaContact($urlauthor);			
-				if ($linkauthor->email_to !=''){
+				if ($linkauthor->email_to !='')
+				{
 					$linkauthor = JRoute::_('index.php?option=com_contact&view=contact&id='.$linkauthor->id.':'.$linkauthor->alias.'&catid='.$linkauthor->catid);
-				} else {
+				} 
+				else 
+				{
 					$linkauthor = '';
 				}
 			}
@@ -357,64 +403,82 @@ class plgContentJdownloadsfilelist extends JPlugin
 		
 		$html .='<small>';		
 		// License
-		if($plic) {
+		if($plic) 
+		{
 			$lictip = JText::_('PLJD_LIC_TITLE').'::'.JText::_('PLJD_LIC_TITLE_HELP');
 			$html .=' <span title="'.$lictip.'" class="editlinktip hasTip"><img src="'.$imgm.'license.png" style="vertical-align: middle;" width="'.$is.'px" height="'.$is.'px"/>';
 			(strlen($lu)>1) ? $html .=' <a href="'.$lu.'" target="_blank">'.$lt.'</a></span>' : $html .= ' '.$lt.'</span>';
 		}
 		// Author		
-		if($pauthor) {
+		if($pauthor) 
+		{
 			$auttip = JText::_('PLJD_AUT_TITLE').'::'.JText::_('PLJD_AUT_TITLE_HELP');
-			if (strlen($urlauthor)>1) {
+			if (strlen($urlauthor)>1) 
+			{
 				$html .=' <span title="'.$auttip.'" class="editlinktip hasTip"><img src="'.$imgm.'contact.png" alt="author" style="vertical-align: middle;" width="'.$is.'px" height="'.$is.'px" />';
-				if (substr_count($urlauthor, '@') == 1){
-					if ($linkauthor != ''){					
+				if (substr_count($urlauthor, '@') == 1)
+				{
+					if ($linkauthor != '')
+					{					
 						$mail = '<a href="'.$linkauthor.'">'.$author.'</a>';
-					} else {
+					} 
+					else 
+					{
 						$mail = $this->tuxEmailProtected($urlauthor,$author);
 					}					
 					(strlen($urlauthor)>1) ? $html .=' '.$mail.'</span>' : '</span>';
-				} else {
+				} 
+				else 
+				{
 					(strlen($urlauthor)>1) ? $html .=' <a href="http://'.$urlauthor.'" target="_blank">'.$author.'</a></span>' : $html .= ' '.$author.'</span>';
 				}
 			}
 		}
 		// Author Web		
-		if($pweb) {
+		if($pweb) 
+		{
 			$webtip = JText::_('PLJD_WEB_TITLE').'::'.JText::_('PLJD_WEB_TITLE_HELP');
-			if (strlen($urlhome)>1) {
+			if (strlen($urlhome)>1) 
+			{
 				$html .=' <span title="'.$webtip.'" class="editlinktip hasTip"><img src="'.$imgm.'weblink.png" style="vertical-align: middle;" alt="web page" width="'.$is.'px" height="'.$is.'px" />';
 				$html .=' <a href="http://'.$urlhome.'" target="_blank">'.JText::_('WEB_PAGE').'</a></span>';
 			}
 		}
 		// Date		
-		if($pdate) {
+		if($pdate) 
+		{
 			$datetip = JText::_('PLJD_DATE_TITLE').'::'.JText::_('PLJD_DATE_TITLE_HELP');
 			$html .=' <span title="'.$datetip.'" class="editlinktip hasTip"><img src="'.$imgm.'date.png" style="vertical-align: middle;" alt="date" width="'.$is.'px" height="'.$is.'px" />';
 			$html .= ' '.JHTML::Date($date,JText::_('DATE_FORMAT_LC4')).'</span>';
 		}
 		// Language		
-		if($plang) {
-			if (strlen($langtext)>1){
+		if($plang) 
+		{
+			if (strlen($langtext)>1)
+			{
 				$lantip = JText::_('PLJD_LAN_TITLE').'::'.JText::_('PLJD_LAN_TITLE_HELP');
 				$html .=' <span title="'.$lantip.'" class="editlinktip hasTip"><img src="'.$imgm.'language.png" alt="language" style="vertical-align: middle;" width="'.$is.'px" height="'.$is.'px" title="'.$langtext.'" alt="'.$langtext.'"/> '.$langtext.'</span>';
 			}
 		}
 		// System		
-		if($psys) {
-			if (strlen($systext)>1){
+		if($psys) 
+		{
+			if (strlen($systext)>1)
+			{
 				$systip = JText::_('PLJD_SYS_TITLE').'::'.JText::_('PLJD_SYS_TITLE_HELP');
 				$html .=' <span title="'.$systip.'" class="editlinktip hasTip"><img src="'.$imgm.'system.png" style="vertical-align: middle;" width="'.$is.'px" height="'.$is.'px" title="'.$systext.'" alt="'.$systext.'"/> '.$systext.'</span>';
 			}
 		}
 		// Filesize		
-		if($psize) {
+		if($psize) 
+		{
 			$siztip = JText::_('PLJD_SIZ_TITLE').'::'.JText::_('PLJD_SIZ_TITLE_HELP');
 			$html .=' <span title="'.$siztip.'" class="editlinktip hasTip"><img src="'.$imgf.$filepic.'" style="vertical-align: middle;" width="'.$is.'px" height="'.$is.'px" />';
 			$html .= ' '.$size.'</span>';
 		}
 		// Count		
-		if($pcount) {
+		if($pcount) 
+		{
 			$counttip = JText::_('PLJD_COUNT_TITLE').'::'.JText::_('PLJD_COUNT_TITLE_HELP');
 			$html .=' <span title="'.$counttip.'" class="editlinktip hasTip"><img src="'.$imgm.'download.png" style="vertical-align: middle;" width="'.$is.'px" height="'.$is.'px" />';
 			$html .= ' '.$count.'</span>';
@@ -450,7 +514,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 					."</script>";
 		$document->addCustomTag($header);
 		
-		if ($loadcss){
+		if ($loadcss)
+		{
 			// Load CSS
 			$css  = '<style type="text/css">
 					#tuxaccordion {
@@ -497,7 +562,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 		$style = '';
 		$pag 	 	= $params->get('pagination',1);
 		$localcss	= trim($params->get('loadcss',''));
-		if (strlen($localcss)>1) {
+		if (strlen($localcss)>1) 
+		{
 			$style = $this->getStyleName($localcss);
 			return $style;
 		}
@@ -535,7 +601,9 @@ class plgContentJdownloadsfilelist extends JPlugin
 							padding: '.$lmar.'
 							}							
 							';
-			} else {
+			} 
+			else 
+			{
 				$style 	.= '#tuxjdfilelist .tuxjdfl-list{
 							list-style-type: '.$ltype.'; 
 							padding: '.$lmar.'
@@ -613,7 +681,9 @@ class plgContentJdownloadsfilelist extends JPlugin
 			$fdcss		= $this->getComStyles($ffsiz,$falign,$ffcol,$fback,$fbord,$ffsty,$fshaw,$fshaws,$fshawc,$ffont);
 			$style 	.= '#tuxjdfilelist .tuxjdfl-fdesc{'.$fdcss.'}';
 					
-		} else {			
+		} 
+		else 
+		{			
 			$okcss	= false;
 			$back1	= '';
 			$back2	= '';
@@ -621,7 +691,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 			{
 				case 1: 
 					$style = $this->getStyleName('basic');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->setStyleName('default');					
 					} 
 					$back1 = '#000000';
@@ -630,7 +701,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 				case 2: 
 					$style = $this->getStyleName('bluescale');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->getStyleName('default');						
 					} 
 					$back1 = '#000000';
@@ -639,9 +711,12 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 				case 3: 
 					$style = $this->getStyleName('greenscale');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->getStyleName('default');						
-					} else {
+					} 
+					else 
+					{
 						$back1 = '#005D00';
 						$back2 = '#00B000';
 					}
@@ -649,9 +724,12 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 				case 4: 
 					$style = $this->getStyleName('redscale');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->getStyleName('default');						
-					} else {
+					} 
+					else 
+					{
 						$back1 = '#6B000A';
 						$back2 = '#FFA0A0';
 					}
@@ -659,9 +737,12 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 				case 5: 
 					$style = $this->getStyleName('joomla');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->getStyleName('default');						
-					} else {
+					} 
+					else 
+					{
 						$back1 = '#FFFFFF';
 						$back2 = '#CCCCCC';
 					}
@@ -669,9 +750,12 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 				case 6: 
 					$style = $this->getStyleName('platonic');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->getStyleName('default');						
-					} else {
+					} 
+					else 
+					{
 						$back1 = '#000000';
 						$back2 = '#000000';
 					}
@@ -679,9 +763,12 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 				case 7: 
 					$style = $this->getStyleName('aristocratic');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->getStyleName('default');						
-					} else {
+					} 
+					else 
+					{
 						$back1 = '#000000';
 						$back2 = '#000000';
 					}
@@ -689,9 +776,12 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 				case 8: 
 					$style = $this->getStyleName('inlove');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->getStyleName('default');					
-					} else {
+					} 
+					else 
+					{
 						$back1 = '#000000';
 						$back2 = '#000000';
 					}					
@@ -699,7 +789,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 				case 9: 
 					$style = $this->getStyleName('dark');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->getStyleName('default');
 					}
 					$back1 = '#FFFFFF';
@@ -708,9 +799,12 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 				case 10: 
 					$style = $this->getStyleName('merlin');
-					if ($style=='') {
+					if ($style=='') 
+					{
 						$style = $this->getStyleName('default');
-					} else {					
+					} 
+					else 
+					{					
 						$back1 = '#FFFFFF';
 						$back2 = '#808080';
 					}
@@ -718,9 +812,12 @@ class plgContentJdownloadsfilelist extends JPlugin
 					break;
 			}				
 		}
-		if ( $tpl== 0) {
+		if ( $tpl== 0) 
+		{
 			$css = '<style type="text/css">'.$style.'</style>';
-		} else {
+		} 
+		else 
+		{
 			$okcss = false;
 			$back1 = '#000000';
 			$back1 = '#FFFFFF';
@@ -754,13 +851,27 @@ class plgContentJdownloadsfilelist extends JPlugin
 		($border) 	? $css .='border:'.$border.';' : '';
 		switch ($fstyle)
 		{
-			case 1: $css .= 'font-style: normal; '; break;
-			case 2: $css .= 'font-style: italic; '; break;
-			case 3: $css .= 'text-transform: capitalize; '; break;
-			case 4: $css .= 'text-transform: minimize; '; break;
-			case 5: $css .= 'font-style: underline; '; break;
-			case 6: $css .= 'font-variant: small-caps; '; break;
-			default: $css .= 'text-style: normal; '; break;
+			case 1: 
+				$css .= 'font-style: normal; '; 
+				break;
+			case 2: 
+				$css .= 'font-style: italic; '; 
+				break;
+			case 3: 
+				$css .= 'text-transform: capitalize; '; 
+				break;
+			case 4: 
+				$css .= 'text-transform: minimize; '; 
+				break;
+			case 5: 
+				$css .= 'font-style: underline; '; 
+				break;
+			case 6: 
+				$css .= 'font-variant: small-caps; '; 
+				break;
+			default: 
+				$css .= 'text-style: normal; '; 
+				break;
 		}	
 		($shadow) ? $css .='text-shadow:'.$shadows.' '.$shadows.' '.$shadowc.';' : '';
 		return $css;	
@@ -780,7 +891,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 		$file 	= JURI::base().'plugins/content/jdownloadsfilelist/css/'.$name.'.css';
 		$verify = JPATH_SITE.DS.'plugins'.DS.'content'.DS.'jdownloadsfilelist'.DS.'css'.DS.$name.'.css';
 		$ver = JFile::exists($verify);
-		if (JFile::exists($verify)){			
+		if (JFile::exists($verify))
+		{			
 			$csslink = '<link rel="stylesheet" href="'.$file.'" type="text/css" />';			
 		} 		
 		return $csslink;
@@ -798,13 +910,16 @@ class plgContentJdownloadsfilelist extends JPlugin
 		$error		= array();
 		$html		= '';
 		$valid		= 0;
-		if ($catlist != null) {			
+		if ($catlist != null) 
+		{			
 			$publish	= $catlist->published;
 			$_access 	= $catlist->cat_access;			
 			$gaccess	= $catlist->cat_group_access;
 			$html      .= "<div style='color:#000;font-weight:bold;background:yellow;text-align:center;'>".JText::_('JDOWNLOADSFILELISTPLUGIN_MESSAGE').": ".$catlist->cat_title."</div>";
 			$html	   .= "<div style='background:#A10000;color:#FFF;text-align:left;border:1px solid #CCC'>";
-		} else {
+		} 
+		else
+		{
 			$html      .= "<div style='color:#000;font-weight:bold;background:yellow;text-align:center;'>".JText::_('JDOWNLOADSFILELISTPLUGIN_MESSAGE')."</div>";
 			$html	   .= "<div style='background:#A10000;color:#FFF;text-align:center;border:1px solid #CCC'>";
 			$html	   .= JText::_('YOU_MUST_INDICATE_ALMOST_ONE_CATEGORY_ID')."</div>";
@@ -815,10 +930,13 @@ class plgContentJdownloadsfilelist extends JPlugin
 		
 		$html	   .= "<ul>";
 		//Test published
-		if ($publish == 0) {
+		if ($publish == 0) 
+		{
 			$html	.= "<li>".JText::_('CATEGORY_NOT_PUBLISHED')."</li>"; 
 			$valid	= $valid+1;
-		} else {
+		} 
+		else 
+		{
 			$html	.= "<li>".JText::_('CATEGORY_PUBLISHED')."</li>";
 			$valid	= $valid;
 		}
@@ -843,7 +961,9 @@ class plgContentJdownloadsfilelist extends JPlugin
 			$group	= $this->getJdownloadsGroup($gaccess);
 			$html  .="<li>".JText::_('CATEGORY_ONLY_FOR_GROUP_NAME').': '.$group->groups_name."</li>"; 
 			$valid	= $valid+1;
-		} else {
+		} 
+		else 
+		{
 			$html  .=''; 
 			$valid	= $valid;
 		}		
@@ -878,13 +998,16 @@ class plgContentJdownloadsfilelist extends JPlugin
 	* @package		Joomla.Plugin
 	* @subpackage	Content.jdownloadsfilelist
 	*/
-	protected function getJDConfig (){
+	protected function getJDConfig ()
+	{
 		$database = &JFactory::getDBO();
 		$jlistConfig = array();
 		$database->setQuery("SELECT setting_name, setting_value FROM #__jdownloads_config");
 		$jlistConfigObj = $database->loadObjectList();
-		if(!empty($jlistConfigObj)){
-			foreach ($jlistConfigObj as $jlistConfigRow){
+		if(!empty($jlistConfigObj))
+		{
+			foreach ($jlistConfigObj as $jlistConfigRow)
+			{
 				$jlistConfig[$jlistConfigRow->setting_name] = $jlistConfigRow->setting_value;
 			}
 		}
@@ -898,7 +1021,8 @@ class plgContentJdownloadsfilelist extends JPlugin
 	* @package		Joomla.Plugin
 	* @subpackage	Content.jdownloadsfilelist
 	*/
-	protected function getJDLicenses ($id){
+	protected function getJDLicenses ($id)
+	{
 		$db = &JFactory::getDBO();		
 		$db->setQuery("SELECT license_title, license_url FROM #__jdownloads_license WHERE id=".$id);
 		$license = $db->loadObject();
