@@ -1,0 +1,72 @@
+IMPORTANT:
+Use only this class for create a CSS style files
+
+
+::: Total Plugin Space Style
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+#tuxjdfilelist{}
+			
+
+::: jDownloads File List
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+.tuxjdfl-list{}							
+
+::: jDownloads Links File List
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+#tuxjdfilelist .tuxjdfl-list a:link,
+#tuxjdfilelist .tuxjdfl-list a:visited{}
+
+.tuxjdfilelist .tuxjdfl-list  a:hover,
+.tuxjdfilelist .tuxjdfl-list  a:active,
+.tuxjdfilelist .tuxjdfl-list  a:focus{}
+			
+:: Title Intro Category
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+#tuxjdfilelist .tuxjdfl-introtit h3{}
+#tuxjdfilelist .tuxjdfl-introtit{}
+
+::: Text Intro Category 
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+#tuxjdfilelist .tuxjdfl-introdesc{}
+
+::: Title jDownloads Category 
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+#tuxjdfilelist .tuxjdfl-titcat h3{}
+#tuxjdfilelist .tuxjdfl-titcat{}
+		
+::: Text jDownloads Category 
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+#tuxjdfilelist .tuxjdfl-textcat a{}	
+#tuxjdfilelist .tuxjdfl-textcat{}
+
+::: Text jDownloads File
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+#tuxjdfilelist .tuxjdfl-fdesc{}
+
+
+
+:::	Accordion for pagination
+¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+#tuxaccordion {}
+
+h3.titletoggler {
+	cursor: pointer;
+	border: 1px solid #bbb;
+	border-right-color: #ddd;
+	border-bottom-color: #ddd;
+	font-family: "Andale Mono", sans-serif;
+	font-size: 12px;
+	background: #000080; --> YOU CAN ONLY CHANGE THIS
+	color: #000000; --> YOU CAN ONLY CHANGE THIS
+	margin: 0 0 4px 0;
+	padding: 3px 5px 1px;
+}
+
+div.elementcontent p, div.elementcontent h4 {
+	margin:0px;
+	padding:4px !important;
+}
+
+.elementcontent{
+	padding:5px;
+}

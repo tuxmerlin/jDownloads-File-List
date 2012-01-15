@@ -1,0 +1,128 @@
+/*
+	@CSS styles for Content.Plugin jDownloads File List
+	@Theme: Basic	
+*/
+
+/*
+	Plugin
+*/
+
+/* Total Plugin Space */
+#tuxjdfilelist{
+	border:2px solid blue;				
+	padding:10px;
+	background: #003366 url(images/merlin-fon.png) top left no-repeat;
+}
+			
+/* jDownloads File List */
+.tuxjdfl-list{
+	list-style-image: url(/media/system/images/arrow.png); 
+	padding: 0 0 0 15px
+}							
+
+/* jDownloads Links File List */
+#tuxjdfilelist .tuxjdfl-list a:link,
+#tuxjdfilelist .tuxjdfl-list a:visited{
+	font-size:100%;				
+	color:#fff;
+	font-family:Trebuchet,Arial,sans-serif;
+	line-height:25px;
+	font-weight:bold;
+	text-shadow:1px 0 #808080;
+	text-decoration:none;	
+}
+
+.tuxjdfilelist .tuxjdfl-list  a:hover,
+.tuxjdfilelist .tuxjdfl-list  a:active,
+.tuxjdfilelist .tuxjdfl-list  a:focus{
+	color:#FFFFFF;	
+}
+			
+/* Title Intro Category */
+#tuxjdfilelist .tuxjdfl-introtit h3{color:#FFF;text-shadow:1px 1px #808080;line-height:25px;}
+
+#tuxjdfilelist .tuxjdfl-introtit{
+	font-family:Trebuchet,sans-serif;
+	font-size:15px;
+	font-weight:bold;
+	text-align:center;	
+	border-bottom:1px solid blue;
+	font-style: normal; 
+}
+
+/* Text Intro Category */
+#tuxjdfilelist .tuxjdfl-introdesc{
+	font-family:Trebuchet,Arial,Sans-serif;
+	font-size:12px;
+	text-align:justify;
+	color:#fff;	
+	font-variant: small-caps; 
+	font-weight:bold;
+	border-bottom:1px solid blue;	
+}
+
+/* Title jDownloads Category */
+#tuxjdfilelist .tuxjdfl-titcat h3{font-size: 20px; color:#fff;text-shadow:1px 1px #808080}
+
+#tuxjdfilelist .tuxjdfl-titcat{
+	font-size:15px;
+	line-height:40px;
+	text-align:left;
+	color:#fff;
+	border:none;
+	text-align:center;
+	font-style: normal; 
+}
+		
+/* Text jDownloads Category */	
+#tuxjdfilelist .tuxjdfl-textcat a{color:blue;}	
+#tuxjdfilelist .tuxjdfl-textcat{
+	font-size:12px;
+	text-align:left;
+	font-weight:bold;
+	color:#fff;
+	border-top:1px solid #ccc;
+	border-bottom:1px solid #ccc;
+	font-variant: small-caps; 
+}
+
+/* Text jDownloads File */		
+#tuxjdfilelist .tuxjdfl-fdesc{
+	font-family:Verdana,Arial,Sans-serif;
+	font-size:10px;
+	text-align:left;
+	color:#fff;
+	background:url(images/bluescale-spaces.png);
+	border:1px solid #ccc;
+	font-style: small-caps; 	
+}
+
+
+/*
+	Accordion
+*/
+#tuxaccordion {
+	margin:0px 0px;
+}
+
+h3.titletoggler {
+	cursor: pointer;
+	border: 1px solid #bbb;
+	border-right-color: #ddd;
+	border-bottom-color: #ddd;
+	font-family: "Andale Mono", sans-serif;
+	font-size: 12px;
+	background: #000080;
+	color: #000000;
+	margin: 0 0 4px 0;
+	padding: 3px 5px 1px;
+}
+
+div.elementcontent p, div.elementcontent h4 {
+	margin:0px;
+	padding:4px !important;
+}
+
+.elementcontent{
+	padding:5px;
+}

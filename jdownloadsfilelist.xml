@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="1.6" type="plugin" group="content">	
+	<name>PLG_CONTENT_JDOWNLOADFILELIST</name>
+	<author>Tux Merlín Software</author>
+	<creationDate>Aug 2011</creationDate>
+	<copyright>C) 2011 Miguel Tuyaré. All rights reserved.</copyright>
+	<license>GNU/GPL v3</license>
+	<authorEmail>developer@tuxmerlin.com.ar</authorEmail>
+	<authorUrl>www.tuxmerlin.com.ar</authorUrl>
+	<version>2.1</version>
+	<description>PLG_CONTENT_JDOWNLOADFILELIST_XML_DESCRIPTION</description>
+	<files>
+		<filename plugin="jdownloadsfilelist">jdownloadsfilelist.php</filename>
+		<folder>tuxelements</folder>	
+		<folder>css</folder>		
+		<folder>languages</folder>
+		<filename>index.html</filename>		
+	</files> 	
+	<languages folder="languages">		
+		<language tag="es-ES">es-ES/es-ES.plg_content_jdownloadsfilelist.ini</language>
+		<language tag="es-ES">es-ES/es-ES.plg_content_jdownloadsfilelist.sys.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_content_jdownloadsfilelist.ini</language>
+		<language tag="en-GB">en-GB/en-GB.plg_content_jdownloadsfilelist.sys.ini</language>
+	</languages>
+	<config>
+		<fields name="params">
+			<!-- General Params -->
+			<fieldset name="GENERALCONFIG" addfieldpath="/plugins/content/jdownloadsfilelist/tuxelements">					
+				<field name="a-general" type="separators" class="fulltext" fielName="gray" value="ABOUT_GENERAL_DESC" default="ABOUT_GENERAL" />
+				<field name="jdfl-template" type="list" default="0" label="JDFL-TEMPLATE" description="JDFL-TEMPLATE_DESC">
+					<option value="0">TUX_NONE</option>
+					<option value="1">TUX_BASIC</option>
+					<option value="2">TUX_BLUESCALE</option>
+					<option value="3">TUX_GREENSCALE</option>
+					<option value="4">TUX_READSCALE</option>
+					<option value="5">TUX_JOOMLA</option>
+					<!--
+					<option value="6">TUX_PLATONIC</option>
+					<option value="7">TUX_ARITOCRATIC</option>
+					<option value="8">TUX_INLOVE</option>
+					-->
+					<option value="9">TUX_DARK</option>
+					<option value="10">TUX_MERLIN</option>
+				</field>
+				<field name="loadcss" type="text" size="50" default="" label="LOADCSS" description="LOADCSS_DESC" />
+				<field name="a-loadcss" type="separators" class="textdesc" value="ABOUT_LOADCSS" default="" />
+				<field name="pborderstyle" type="text" size="30" default="" label="PLUGINBORDER" description="PLUGINBORDER_DESC"/>
+				<field name="pbackground" type="jscolor" default="" label="PLUGINBACKGROUND" description="PLUGINBACKGROUND_DESC"/>
+				<field name="pmargin" type="text" default="10px" label="CONTENTSEPARATION" description="CONTENTSEPARATION_DESC"/>
+			</fieldset>			
+			<!-- Introduction Category Text Params -->
+			<fieldset name="INTROCATEGORY" addfieldpath="/plugins/content/jdownloadsfilelist/tuxelements">
+				<field name="a-category" type="separators" class="fulltext" fielName="sepia" value="ABOUT_INTRO_CATEGORY_TEXT" default="ABOUT_INTRO_CATEGORY" />
+				<field name="showintrotext" type="radio" default="0" label="SHOWINTROCATEGORY" description="SHOWINTROCATEGORY_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>	
+				<!-- Title Introduction -->
+				<field name="a-categorytit" type="separators" class="title" fielName="sepia" default="ABOUT_STYLES_INTRO_CATEGORY_TIT" />
+				<field name="introtit" type="text" size="50" default="" label="INTROCATTITLE" description="INTROCATTITLE_DESC"/>
+				<field name="introtitsize" type="text" default="15px" label="INTROTITFONTSIZE" description="INTROTITFONTSIZE_DESC"/>
+				<field name="introtitfont" type="text" default="" label="GOOGLEFONT" description="GOOGLEFONT_DESC" />					
+				<field name="a-categorytitfont" type="separators" class="textdesc" value="ABOUT_FONT" default="" />
+				<field name="introtitstyle" type="list" default="1" label="LABELSTLYE" description="LABELSTLYE_DESC">
+					<option value="1">TUX_NORMAL</option>
+					<option value="2">TUX_ITALIC</option>
+					<option value="3">TUX_CAPITALIZE</option>
+					<option value="4">TUX_MINUS</option>
+					<option value="5">TUX_UNDERLINE</option>
+					<option value="6">TUX_SMALLCAPS</option>
+				</field>
+				<field name="introtitalign" type="list" default="left" label="LABELALIGN" description="LABELALIGN_DESC">
+					<option value="left">TUX_LEFT</option>
+					<option value="right">TUX_RIGHT</option>
+					<option value="center">TUX_CENTER</option>
+					<option value="justify">TUX_JUSTIFY</option>
+				</field>
+				<field name="introtitcolor" type="jscolor" default="#000000" label="LABELCOLOR" description="LABELCOLOR_DESC"/>
+				<field name="introtitback" type="jscolor" default="" label="LABELBACKGROUND" description="LABELBACKGROUND_DESC"/>
+				<field name="introtitshadow" type="radio" default="0" label="LABELSHADOWS" description="LABELSHADOWS_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="introtitshadows" type="text" default="1px" label="LABELSHADOWSSIZE" description="LABELSHADOWSSIZE_DESC"/>	
+				<field name="introtitshadowc" type="jscolor" default="#CCCCCC" label="LABELSHADOWSCOLOR" description="LABELSHADOWSCOLOR_DESC"/>	
+				<field name="introtitborder" type="text" default="" label="LABELBORDER" description="LABELBORDER_DESC"/>	
+				<!-- Text Introduction -->
+				<field name="a-categorytext" type="separators" class="title" fielName="sepia" default="ABOUT_STYLES_INTRO_CATEGORY_TEXT" />
+				<field name="introdesc" type="textarea" cols="35" rows="5" default="" label="INTROCATTEXT" description="INTROCATTEXT_DESC" />
+				<field name="introsize" type="text" default="10px" label="INTROFONTSIZE" description="INTROFONTSIZE_DESC"/>
+				<field name="introfont" type="text" default="" label="GOOGLEFONT" description="GOOGLEFONT_DESC" />
+				<field name="a-categorytextfont" type="separators" class="textdesc" value="ABOUT_FONT" default="" />
+				<field name="introstyle" type="list" default="1" label="LABELSTLYE" description="LABELSTLYE_DESC">
+					<option value="1">TUX_NORMAL</option>
+					<option value="2">TUX_ITALIC</option>
+					<option value="3">TUX_CAPITALIZE</option>
+					<option value="4">TUX_MINUS</option>
+					<option value="5">TUX_UNDERLINE</option>
+					<option value="6">TUX_SMALLCAPS</option>
+				</field>
+				<field name="introalign" type="list" default="left" label="LABELALIGN" description="LABELALIGN_DESC">
+					<option value="left">TUX_LEFT</option>
+					<option value="right">TUX_RIGHT</option>
+					<option value="center">TUX_CENTER</option>
+					<option value="justify">TUX_JUSTIFY</option>
+				</field>
+				<field name="introcolor" type="jscolor" default="#000000" label="LABELCOLOR" description="LABELCOLOR_DESC"/>
+				<field name="introback" type="jscolor" default="" label="LABELBACKGROUND" description="LABELBACKGROUND_DESC"/>
+				<field name="introshadow" type="radio" default="0" label="LABELSHADOWS" description="LABELSHADOWS_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="introshadows" type="text" default="1px" label="LABELSHADOWSSIZE" description="LABELSHADOWSSIZE_DESC"/>	
+				<field name="introshadowc" type="jscolor" default="#CCCCCC" label="LABELSHADOWSCOLOR" description="LABELSHADOWSCOLOR_DESC"/>
+				<field name="introborder" type="text" default="" label="LABELBORDER" description="LABELBORDER_DESC"/>	
+			</fieldset>
+			<!-- jDownload Category Params -->
+			<fieldset name="JDOWNLOADCATEOGRY" addfieldpath="/plugins/content/jdownloadsfilelist/tuxelements">
+				<field name="a-jdcategory" type="separators" class="fulltext" fielName="blue" value="ABOUT_JDOWNLOADS_CATEGORY_DESC" default="ABOUT_JDOWNLOADS_CATEGORY" />				
+				<!-- jDownload Category Title -->
+				<field name="a-jdcategorytit" type="separators" class="title" fielName="gray" default="ABOUT_STYLES_JD_CATEGORY_TIT" />				
+				<field name="jdcattit" type="radio" default="1" label="JDCATTITLESHOW" description="JDCATTITLESHOW_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="titlecatsize" type="text" default="15px" label="JDCATTITLESIZE" description="JDCATTITLESIZE_DESC"/>
+				<field name="titlecatfont" type="text" default="" label="GOOGLEFONT" description="GOOGLEFONT_DESC" />					
+				<field name="a-jdcattitfont" type="separators" class="textdesc" value="ABOUT_FONT" default="" />
+				<field name="titlecatstyle" type="list" default="1" label="LABELSTLYE" description="LABELSTLYE_DESC">
+					<option value="1">TUX_NORMAL</option>
+					<option value="2">TUX_ITALIC</option>
+					<option value="3">TUX_CAPITALIZE</option>
+					<option value="4">TUX_MINUS</option>
+					<option value="5">TUX_UNDERLINE</option>
+					<option value="6">TUX_SMALLCAPS</option>
+				</field>
+				<field name="titlecatalign" type="list" default="left" label="LABELALIGN" description="LABELALIGN_DESC">
+					<option value="left">TUX_LEFT</option>
+					<option value="right">TUX_RIGHT</option>
+					<option value="center">TUX_CENTER</option>
+					<option value="justify">TUX_JUSTIFY</option>
+				</field>
+				<field name="titlecatcolor" type="jscolor" default="#000000" label="LABELCOLOR" description="LABELCOLOR_DESC"/>
+				<field name="titlecatback" type="jscolor" default="" label="LABELBACKGROUND" description="LABELBACKGROUND_DESC"/>
+				<field name="titlecatshadow" type="radio" default="0" label="LABELSHADOWS" description="LABELSHADOWS_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="titlecatshadows" type="text" default="1px" label="LABELSHADOWSSIZE" description="LABELSHADOWSSIZE_DESC"/>	
+				<field name="titlecatshadowc" type="jscolor" default="#CCCCCC" label="LABELSHADOWSCOLOR" description="LABELSHADOWSCOLOR_DESC"/>
+				<field name="titlecatborder" type="text" default="" label="LABELBORDER" description="LABELBORDER_DESC"/>	
+				<!-- jDownload Category Description -->
+				<field name="a-jdcategorytext" type="separators" class="title" fielName="gray" default="ABOUT_STYLES_JD_CATEGORY_TEXT" />
+				<field name="cdescription" type="radio" default="1" label="DISPLAYDESCRIPTION" description="DISPLAYDESCRIPTION_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>	
+				<field name="ccleancode" type="radio" default="1" label="JDCATDESCCLEANCODE" description="JDCATDESCCLEANCODE_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>	
+				<field name="cwordlimit" type="text" default="0" label="JDCATDESCCUTWORD" description="JDCATDESCCUTWORD_DESC"/>		
+				<field name="cimage" type="radio" default="1" label="DISPLAYCATEGORYIMAGE" description="DISPLAYCATEGORYIMAGE_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>	
+				<field name="cdescfontsize" type="text" default="10px" label="JDCATDESCFONTSIZE" description="JDCATDESCFONTSIZE_DESC"/>		
+				<field name="cdescfont" type="text" default="" label="GOOGLEFONT" description="GOOGLEFONT_DESC" />
+				<field name="a-jdcatdescfont" type="separators" class="textdesc" value="ABOUT_FONT" default="" />
+				<field name="cdescstyle" type="list" default="1" label="LABELSTLYE" description="LABELSTLYE_DESC">
+					<option value="1">TUX_NORMAL</option>
+					<option value="2">TUX_ITALIC</option>
+					<option value="3">TUX_CAPITALIZE</option>
+					<option value="4">TUX_MINUS</option>
+					<option value="5">TUX_UNDERLINE</option>
+					<option value="6">TUX_SMALLCAPS</option>
+				</field>				
+				<field name="cdescalign" type="list" default="left" label="LABELALIGN" description="LABELALIGN_DESC">
+					<option value="left">TUX_LEFT</option>
+					<option value="right">TUX_RIGHT</option>
+					<option value="center">TUX_CENTER</option>
+					<option value="justify">TUX_JUSTIFY</option>
+				</field>
+				<field name="cdescfontcolor" type="jscolor" default="#000000" label="LABELCOLOR" description="LABELCOLOR_DESC"/>
+				<field name="cbackdesc" type="jscolor" default="#FFFFFF" label="LABELBACKGROUND" description="LABELBACKGROUND_DESC"/>
+				<field name="cdescshadow" type="radio" default="0" label="LABELSHADOWS" description="LABELSHADOWS_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="cdescshadows" type="text" default="1px" label="LABELSHADOWSSIZE" description="LABELSHADOWSSIZE_DESC"/>	
+				<field name="cdescshadowc" type="jscolor" default="#CCCCCC" label="LABELSHADOWSCOLOR" description="LABELSHADOWSCOLOR_DESC"/>	
+				<field name="cborddesc" type="text" size="30" default="" label="LABELBORDER" description="LABELBORDER_DESC"/>
+			</fieldset>
+			<!-- jDownload Download Params -->
+			<fieldset name="JDOWNLOADFILES" addfieldpath="/plugins/content/jdownloadsfilelist/tuxelements">
+				<field name="a-title" type="separators" class="fulltext" fielName="green1" value="ABOUT_DOWNLOADS_TEXT"	default="ABOUT_DOWNLOADS" />
+				<field name="itemorder" type="list" default="1" label="LABELITEMORDER" description="LABELITEMORDER_DESC">
+					<option value="1">TUX_ORDERING_BY_NAME_ASC</option>
+					<option value="2">TUX_ORDERING_BY_NAME_DESC</option>					
+					<option value="3">TUX_ORDERING_BY_ID_ASC</option>
+					<option value="4">TUX_ORDERING_BY_ID_DESC</option>
+					<option value="5">TUX_ORDERING_BY_ORDERING</option>						
+				</field>
+				<field name="pagination" type="radio" default="1" label="DISPLAYPAGINATION" description="DISPLAYPAGINATION_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="countdown" type="text" default="10" label="COUNTPAGINATION" description="COUNTPAGINATION_DESC"/>
+				<field name="fdescription" type="radio" default="1" label="DISPLAYDESCRIPTION" description="DISPLAYDESCRIPTION_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="fdesctype" type="radio" default="1" label="DESCRIPTIONTYPE" description="DESCRIPTIONTYPE_DESC">
+					<option value="1">TUX_SHORT</option>
+					<option value="0">TUX_LONG</option>
+				</field>					
+				<field name="fdescfontsize" type="text" default="10px" label="JDFILEDESCFONTSIZE" description="JDFILEDESCFONTSIZE_DESC"/>		
+				<field name="fdescfont" type="text" default="" label="GOOGLEFONT" description="GOOGLEFONT_DESC" />
+				<field name="a-jdcatdescfont" type="separators" class="textdesc" value="ABOUT_FONT" default="" />
+				<field name="fdescfontstyle" type="list" default="1" label="LABELSTLYE" description="LABELSTLYE_DESC">
+					<option value="1">TUX_NORMAL</option>
+					<option value="2">TUX_ITALIC</option>
+					<option value="3">TUX_CAPITALIZE</option>
+					<option value="4">TUX_MINUS</option>
+					<option value="5">TUX_UNDERLINE</option>
+					<option value="6">TUX_SMALLCAPS</option>
+				</field>				
+				<field name="fdescalign" type="list" default="left" label="LABELALIGN" description="LABELALIGN_DESC">
+					<option value="left">TUX_LEFT</option>
+					<option value="right">TUX_RIGHT</option>
+					<option value="center">TUX_CENTER</option>
+					<option value="justify">TUX_JUSTIFY</option>
+				</field>
+				<field name="fdescfontcolor" type="jscolor" default="#000000" label="LABELCOLOR" description="LABELCOLOR_DESC"/>
+				<field name="fbackdesc" type="jscolor" default="#FFFFFF" label="LABELBACKGROUND" description="LABELBACKGROUND_DESC"/>
+				<field name="fdescshadow" type="radio" default="0" label="LABELSHADOWS" description="LABELSHADOWS_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="fdescshadows" type="text" default="1px" label="LABELSHADOWSSIZE" description="LABELSHADOWSSIZE_DESC"/>
+				<field name="fdescshadowc" type="jscolor" default="#CCCCCC" label="LABELSHADOWSCOLOR" description="LABELSHADOWSCOLOR_DESC"/>
+				<field name="fborddesc" type="text" size="30" default="" label="LABELBORDER" description="LABELBORDER_DESC"/>
+				<field name="fcleancode" type="radio" default="0" label="JDFILECLEANCODE" description="JDFILECLEANCODE_DESC">
+					<option value="0">TUX_NO</option>
+					<option value="1">TUX_YES</option>
+				</field>
+				<!-- About Donwloads -->
+				<field name="a-jdownloadsfiles" type="separators" class="title" fielName="blue" default="ABOUT_FILES_DOWNLOADS" />
+				<field name="show_lic" type="radio" default="1" label="SHOWLICENSE" description="SHOWLICENSE_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="show_author" type="radio" default="1" label="SHOWAUTHOR" description="SHOWAUTHOR_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="link_cform" type="radio" default="1" label="LINKCONTACTAUTHOR" description="LINKCONTACTAUTHOR_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>				
+				<field name="a-linkcontactname" type="separators" class="textdesc" value="LINKCONTACTDESCRIPTION" default="" />				
+				<field name="show_web" type="radio" default="1" label="SHOWAUTHORWEB" description="SHOWAUTHORWEB_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="show_date" type="radio" default="1" label="SHOWDATE" description="SHOWDATE_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="show_lang" type="radio" default="1" label="SHOWLANGUAGE" description="SHOWLANGUAGE_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="show_version" type="radio" default="1" label="SHOWVERSION" description="SHOWVERSION_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="show_size" type="radio" default="1" label="SHOWSIZE" description="SHOWSIZE_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<field name="show_count" type="radio" default="1" label="SHOWCOUNTDWONLOADS" description="SHOWCOUNTDWONLOADS_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+				<!-- end --> 			
+			</fieldset>
+			<fieldset name="JDOWNLOADPAGINATION" addfieldpath="/plugins/content/jdownloadsfilelist/tuxelements">
+				<!-- Accordion params -->
+				<field 	name="a-accordion" type="separators" class="fulltext" fielName="green1"	value="ABOUT_ACCORDION_DESC" default="ACORDION" />
+				<field name="titletext" type="text" default="" label="PAGTITLETEXT" description="PAGTITLETEXT_DESC"/>		
+				<field name="backgtitle" type="jscolor" default="#CCCCCC" label="PAGBACKTITLECOLOR" description="PAGBACKTITLE_DESC"/>
+				<field name="colortitle" type="jscolor" default="#000000" label="PAGTITLECOLOR" description="PAGTITLECOLOR_DESC"/>
+				<field name="backg1" type="jscolor" default="#000000" label="PAGTITLECOLORACTIVE" description="PAGTITLECOLORACTIVE_DESC"/>
+				<field name="backg2" type="jscolor" default="#CCCCCC" label="PAGTITLECOLORNORMAL" description="PAGTITLECOLORNORMAL_DESC"/>		
+			</fieldset>
+			<fieldset name="ADVANCED">	
+				<field 	name="a-list" type="separators" class="fulltext" fielName="fish" value="ABOUT_LIST_DESC" default="ABOUT_LIST" />
+				<field name="listtype" type="list" default="0" label="LISTTYPE" description="LISTTYPE_DESC" >
+					<option value="img">Image</option>
+					<option value="none">none</option>
+					<option value="circle">circle</option>
+					<option value="disc">disc</option>
+					<option value="square">square</option>
+					<option value="armenian">armenian</option>
+					<option value="decimal">decimal</option>
+					<option value="decimal-leading-zero">leading-zero</option>
+					<option value="georgian">georgian</option>
+					<option value="lower-alpha">lower-alpha</option>
+					<option value="lower-greek">lower-greek</option>
+					<option value="lower-latin">lower-latin</option>
+					<option value="lower-roman">lower-roman</option>
+					<option value="upper-alpha">upper-alpha</option>
+					<option value="upper-latin">upper-latin</option>
+					<option value="upper-roman">upper-roman</option>
+					<option value="inherit">inherit</option>
+				</field>
+				<field name="listimage" type="text" size="50"  default="media/system/images/arrow.png" label="LISTIMAGE" description="LISTIMAGE_DESC" />
+				<field name="marginlist" type="text" size="10"  default="0 0 0 15px" label="MARGINLIST" description="MARGINLIST_DESC" />		
+				<field name="linelist" type="text" size="10"  default="15px" label="LINELIST" description="LINELIST_DESC" />		
+				<field name="stylelinks" type="textarea" cols="35" rows="5" default="" label="STYLEFORLINKS" description="STYLEFORLINKS_DESC" />	
+				<field 	name="a-depure" type="separators" class="fulltext" fielName="red" value="ABOUT_DEPURE_DESC" default="ABOUT_DEPURE" />
+				<field name="depure" type="radio" default="0" label="SHOW_ERRORS" description="SHOW_ERRORS_DESC">
+					<option value="1">TUX_YES</option>
+					<option value="0">TUX_NO</option>
+				</field>
+			</fieldset>
+			<fieldset name="ABOUT">				
+				<field name="abouthis" type="separators" class="about" fielName="gray" default="ABOUT_ARTICLES" />				
+			</fieldset>
+		</fields>		
+	</config>			
+</extension>
