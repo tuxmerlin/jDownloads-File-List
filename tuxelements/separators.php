@@ -25,7 +25,8 @@ class JFormFieldSeparators extends JFormField
 	/**
 	 * Clear space label 
 	 */
-	public function getLabel() {
+	public function getLabel() 
+	{
 		$label = '';
 		return $label; 
 	}
